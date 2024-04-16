@@ -22,33 +22,18 @@ public class PacienteServiceImpl implements PacienteService {
     }
 
     @Override
-    public List<Paciente> listarPacientes() {
-        return pacienteRepository.findAll();
-    }
-
-    @Override
-    public Optional<Paciente> buscarPacientePorId(int id) {
-        return pacienteRepository.findById(id);
-    }
-
-    @Override
-    public Paciente guardarPaciente(Paciente paciente) {
-        return pacienteRepository.save(paciente);
-    }
-
-    @Override
-    public void eliminarPaciente(int id) {
-        pacienteRepository.deleteById(id);
-    }
-
-    @Override
-    public List<Paciente> getAllPaciente() {
+    public List<Paciente> getAllPacientes() {
         return pacienteRepository.findAll();
     }
 
     @Override
     public Optional<Paciente> getPacienteById(int id) {
         return pacienteRepository.findById(id);
+    }
+
+    @Override
+    public void eliminarPaciente(int id) {
+        pacienteRepository.deleteById(id);
     }
 
     @Override
@@ -59,8 +44,9 @@ public class PacienteServiceImpl implements PacienteService {
                 paciente.setApellido(pacienteActualizado.getApellido());
                 paciente.setRut(pacienteActualizado.getRut());
                 paciente.setFechaNacimiento(pacienteActualizado.getFechaNacimiento());
+                // Asegúrate de incluir aquí todas las propiedades que desees actualizar.
                 return pacienteRepository.save(paciente);
             })
-            .orElseThrow(() -> new IllegalArgumentException("No se pudo encontrar el paciente con ID: " + id));
+            .orElseThrow(() -> new RuntimeException("No se pudo encontrar el paciente con ID: " + id));
     }
 }

@@ -1,6 +1,9 @@
 package com.casob.casob.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.Size;
 import java.util.Date;
 import java.util.List;
 
@@ -14,19 +17,25 @@ public class Paciente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @NotBlank(message = "El nombre no puede estar vacío")
+    @Size(min = 2, max = 50, message = "El nombre debe tener entre 2 y 50 caracteres")
     @Column(name = "nombre")
     private String nombre;
 
+    @NotBlank(message = "El apellido no puede estar vacío")
+    @Size(min = 2, max = 50, message = "El apellido debe tener entre 2 y 50 caracteres")
     @Column(name = "apellido")
     private String apellido;
 
+    @NotBlank(message = "El RUT no puede estar vacío")
+    @Size(min = 9, max = 12, message = "El RUT debe tener entre 9 y 12 caracteres")
     @Column(name = "rut", unique = true)
     private String rut;
 
+    @Past(message = "La fecha de nacimiento no puede ser en el futuro")
     @Temporal(TemporalType.DATE)
     @Column(name = "fecha_nacimiento")
     private Date fechaNacimiento;
-
 
     @JsonManagedReference
     @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
@@ -36,12 +45,8 @@ public class Paciente {
     @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<Atencion> atenciones;
 
-
-
-    //Contructores
-
+    // Constructores
     public Paciente() {
-        // Constructor vacío para JPA
     }
 
     public Paciente(String nombre, String apellido, String rut, Date fechaNacimiento) {
@@ -51,7 +56,7 @@ public class Paciente {
         this.fechaNacimiento = fechaNacimiento;
     }
 
-    //Getters y Setters
+    // Getters y Setters
     public int getId() {
         return id;
     }
@@ -107,8 +112,4 @@ public class Paciente {
     public void setAtenciones(List<Atencion> atenciones) {
         this.atenciones = atenciones;
     }
-
-
-
-
 }
