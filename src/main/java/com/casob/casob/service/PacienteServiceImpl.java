@@ -44,7 +44,6 @@ public class PacienteServiceImpl implements PacienteService {
                 paciente.setApellido(pacienteActualizado.getApellido());
                 paciente.setRut(pacienteActualizado.getRut());
                 paciente.setFechaNacimiento(pacienteActualizado.getFechaNacimiento());
-                // Asegúrate de incluir aquí todas las propiedades que desees actualizar.
                 return pacienteRepository.save(paciente);
             })
             .orElseThrow(() -> new RuntimeException("No se pudo encontrar el paciente con ID: " + id));
