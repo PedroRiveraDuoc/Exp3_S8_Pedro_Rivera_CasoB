@@ -20,6 +20,7 @@ public class PacienteController {
     @Autowired
     private PacienteService pacienteService;
 
+    // Agregar HATEOAS
     // Endpoint para obtener todos los pacientes registrados.
     @GetMapping
     public ResponseEntity<List<Paciente>> getAllPacientes() {
