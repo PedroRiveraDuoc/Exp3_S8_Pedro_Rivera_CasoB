@@ -2,7 +2,7 @@ package com.casob.casob.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Past;
+//import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
 import java.util.Date;
 import java.util.List;
@@ -32,7 +32,6 @@ public class Paciente {
     @Column(name = "rut", unique = true)
     private String rut;
 
-    @Past(message = "La fecha de nacimiento no puede ser en el futuro")
     @Temporal(TemporalType.DATE)
     @Column(name = "fecha_nacimiento")
     private Date fechaNacimiento;
@@ -91,11 +90,11 @@ public class Paciente {
 
     public Date getFechaNacimiento() {
         return fechaNacimiento;
-    }
+        }
 
-    public void setFechaNacimiento(Date fechaNacimiento) {
+        public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
-    }
+        }
 
     public List<Historial> getHistoriales() {
         return historiales;
