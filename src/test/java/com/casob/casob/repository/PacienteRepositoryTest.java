@@ -21,7 +21,7 @@ public class PacienteRepositoryTest {
     @Autowired
     private TestEntityManager entityManager;
 
-    @Test
+    @Test // Test para encontrar un paciente por su ID
     public void testEncontrarPorId() {
 
         Paciente paciente = new Paciente();
@@ -44,6 +44,14 @@ public class PacienteRepositoryTest {
         assertEquals(paciente.getFechaNacimiento(), pacienteEncontrado.get().getFechaNacimiento(), "La fecha de nacimiento es correcta");
     }
     
+    @Test // Test para no encontrar un paciente por su ID
+    public void testNoEncontrarPorId() {
+        // Buscar un paciente que no existe
+        Optional<Paciente> pacienteEncontrado = pacienteRepository.findById(88);
+    
+        // Verificar que el paciente no fue encontrado
+        assertTrue(pacienteEncontrado.isEmpty(), "El paciente no fue encontrado");
+    }
 
 
 }
