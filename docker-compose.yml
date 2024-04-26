@@ -1,0 +1,13 @@
+version: '1'
+services:
+  microservicio:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - spring.datasource.url=jdbc:oracle:thin:@ngqf61mg4rht4yzr_tp?TNS_ADMIN=/app/oracle_wallet/
+      - spring.datasource.username=Exp2_S6_caso_b
+      - spring.datasource.password=Formativa2-Fullstack
+    restart: always
