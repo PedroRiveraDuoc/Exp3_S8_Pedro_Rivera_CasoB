@@ -1,0 +1,8 @@
+com\casob\casob\model\Paciente.class
+com\casob\casob\CasobApplication.class
+com\casob\casob\controller\PacienteController.class
+com\casob\casob\repository\PacienteRepository.class
+com\casob\casob\model\Historial.class
+com\casob\casob\service\PacienteService.class
+com\casob\casob\model\Atencion.class
+com\casob\casob\service\PacienteServiceImpl.class
